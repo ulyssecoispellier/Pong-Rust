@@ -9,30 +9,32 @@ pub struct Paddle {
 impl Paddle {
     pub fn new(is_left_player: bool) -> Self {
         if is_left_player {
-            Self { x_pos: 4, y_pos: (NUM_ROWS-1)/2, }
+            Self { x_pos: 10, y_pos: (NUM_ROWS-1)/2, }
         } else {
-            Self {x_pos: NUM_COLUMNS-5, y_pos: (NUM_ROWS-1)/2}
+            Self {x_pos: NUM_COLUMNS-11, y_pos: (NUM_ROWS-1)/2}
         }
     }
 
-    pub fn move_up (&mut self) -> Self{
-        if self.y_pos > 0 {
+    pub fn move_up (&mut self){
+        if self.y_pos > 8 {
             self.y_pos -= 1;
         }
-        
-        Self {x_pos: self.x_pos, y_pos: self.y_pos}
     }
-    pub fn move_down (&mut self) -> Self {
-        if self.y_pos < NUM_ROWS - 1 {
+    pub fn move_down (&mut self) {
+        if self.y_pos < NUM_ROWS - 9 {
             self.y_pos += 1;
         }
-        
-        Self {x_pos: self.x_pos, y_pos: self.y_pos}
     }
 }
 
 impl Drawable for Paddle {
     fn draw(&self, frame: &mut Frame) {
-        frame[self.x_pos][self.y_pos] = "|"
+        for i in self.y_pos-8..=self.y_pos+8{
+            frame[self.x_pos][i] = "\x1B[46m\x1B[37m█";
+        }
+        // Separator (Not sure where I could put it)
+        for i in 0..NUM_ROWS {
+            frame[NUM_COLUMNS/2][i] = "|";
+        }
     }
 }

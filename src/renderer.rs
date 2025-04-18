@@ -15,7 +15,7 @@ pub fn renderer(stdout: &mut Stdout, last_frame: &Frame, current_frame: &Frame, 
         for (y, s) in column.iter().enumerate() {
             if *s != last_frame[x][y] || force {
                 stdout.queue(MoveCursorTo(x as u16, y as u16)).unwrap();
-                print!("{}", *s);
+                print!("\x1B[40m{}", *s);
             }
         }
     }
