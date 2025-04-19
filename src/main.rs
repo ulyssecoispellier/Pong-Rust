@@ -81,13 +81,13 @@ fn main() -> Result <(), Box<dyn Error>> {
                 },
             }
 
-            if is_going_up && !is_going_down && move_speed >= MAX_MOVE_SPEED_FPS {
+            if is_going_up && !is_going_down && move_speed >= MAX_MOVE_SPEED_FPS - 150000 + 25000{
                 player.move_up();
                 move_speed = 0;
-            } else if is_going_down && !is_going_up && move_speed >= MAX_MOVE_SPEED_FPS {
+            } else if is_going_down && !is_going_up && move_speed >= MAX_MOVE_SPEED_FPS - 150000 + 25000 {
                 player.move_down();
                 move_speed = 0;
-            } else if move_speed <= MAX_MOVE_SPEED_FPS {
+            } else if move_speed <= MAX_MOVE_SPEED_FPS - 150000 + 25000 {
                 move_speed += 1;
             }
         }
@@ -126,13 +126,13 @@ fn main() -> Result <(), Box<dyn Error>> {
                 },
             }
 
-            if is_going_up && !is_going_down && move_speed >= MAX_MOVE_SPEED_FPS {
+            if is_going_up && !is_going_down && move_speed >= MAX_MOVE_SPEED_FPS - 150000 + 25000 {
                 player.move_up();
                 move_speed = 0;
-            } else if is_going_down && !is_going_up && move_speed >= MAX_MOVE_SPEED_FPS {
+            } else if is_going_down && !is_going_up && move_speed >= MAX_MOVE_SPEED_FPS - 150000 + 25000 {
                 player.move_down();
                 move_speed = 0;
-            } else if move_speed <= MAX_MOVE_SPEED_FPS {
+            } else if move_speed <= MAX_MOVE_SPEED_FPS - 150000 + 25000 {
                 move_speed += 1;
             }
         }
@@ -166,7 +166,8 @@ fn main() -> Result <(), Box<dyn Error>> {
             // Exit Game
             (KeyCode::Esc | KeyCode::Char('-'), KeyEventKind::Press) => {
                 break 'gameloop;
-            }
+            },
+            (KeyCode::Char('r'), KeyEventKind::Press) => { ball.x_pos = NUM_COLUMNS as i32 / 2; ball.y_pos = NUM_ROWS as i32 / 2;},
             _ => {},
         }
 

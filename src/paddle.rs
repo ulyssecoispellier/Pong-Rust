@@ -16,12 +16,12 @@ impl Paddle {
     }
 
     pub fn move_up (&mut self){
-        if self.y_pos > 8 {
+        if self.y_pos > 21 {
             self.y_pos -= 1;
         }
     }
     pub fn move_down (&mut self) {
-        if self.y_pos < NUM_ROWS - 9 {
+        if self.y_pos < NUM_ROWS - 22 {
             self.y_pos += 1;
         }
     }
@@ -29,12 +29,12 @@ impl Paddle {
 
 impl Drawable for Paddle {
     fn draw(&self, frame: &mut Frame) {
-        for i in self.y_pos-8..=self.y_pos+8{
+        for i in self.y_pos-21..=self.y_pos+21{
             frame[self.x_pos][i] = "\x1B[46m\x1B[37m█";
         }
         // Separator (Not sure where I could put it)
         for i in 0..NUM_ROWS {
-            frame[NUM_COLUMNS/2][i] = "|";
+            frame[NUM_COLUMNS/2][i] = "\x1B[37m|";
         }
     }
 }

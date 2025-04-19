@@ -41,7 +41,7 @@ impl Ball {
 
             stdout.queue(SetBackgroundColor(Red)).unwrap();
             stdout.queue(SetForegroundColor(White)).unwrap();
-            
+
             print!("\x1B[2J\x1B[1;{}H", NUM_COLUMNS/2);
             println!("You Lose !");
         }
@@ -54,7 +54,7 @@ impl Ball {
 
         } else if (self.y_pos + y_dir < NUM_ROWS as i32 - 1 || self.y_pos + y_dir > 0)
             && (self.y_pos != 0 && self.y_pos != NUM_ROWS as i32 - 1){
-            
+
             if frame[self.x_pos as usize][(self.y_pos + y_dir) as usize] != "\x1B[46m\x1B[37m█" {
                 self.y_pos += y_dir;
             } else {
@@ -78,6 +78,6 @@ impl Ball {
 
 impl Drawable for Ball {
     fn draw(&self, frame: &mut Frame) {
-        frame[self.x_pos as usize][self.y_pos as usize] = "⬤";
+        frame[self.x_pos as usize][self.y_pos as usize] = "\x1B[31m⬤";
     }
 }
